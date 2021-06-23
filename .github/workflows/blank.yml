@@ -1,7 +1,9 @@
 name: Create Archive
 on: [push]
-  tags:
-  - '*'
+
+tags:
+- '*'
+
 jobs:
   build:
     runs-on: ubuntu-latest
