@@ -1,0 +1,5 @@
+## Interface: 30300
+## Title: Summon Random Critter
+## Author: GiatEMINaGOR
+
+SummonRandomCritter.lua
