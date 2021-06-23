@@ -8,12 +8,12 @@ jobs:
     - name: Archive Release
       uses: thedoctor0/zip-release@master
       with:
-        filename: 'release.zip'
+        filename: 'SummonRandomCritter.zip'
         exclusions: '*.git* /*node_modules/* .editorconfig'
     
     - name: Upload Release
       uses: ncipollo/release-action@v1
       with:
-        artifacts: "release.zip"
+        artifacts: "SummonRandomCritter.zip"
         token: ${{ secrets.GITHUB_TOKEN }}
-        tag: release
+        tag: ${GITHUB_SHA::6}
