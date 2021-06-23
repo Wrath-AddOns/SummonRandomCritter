@@ -1,5 +1,6 @@
 local function OnEvent(self, event, ...)
-	SummonRandomCritter()
+	local mounted = IsMounted()
+	if mounted == nil then SummonRandomCritter() end
 end
 
 local f = CreateFrame("Frame")
