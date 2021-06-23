@@ -16,4 +16,4 @@ jobs:
       with:
         artifacts: "SummonRandomCritter.zip"
         token: ${{ secrets.GITHUB_TOKEN }}
-        tag: ${GITHUB_SHA::6}
+        tag: ${{ GITHUB_SHA::6 }}
