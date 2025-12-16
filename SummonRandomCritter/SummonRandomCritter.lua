@@ -1,6 +1,18 @@
 local inTaxiFlight = false
 local outOfCombat = true
 
+local function StartDelayedSummon(frame)
+    local startTime = GetTime()
+    frame:SetScript("OnUpdate", function()
+        if GetTime() - startTime >= 1.5 then
+            if outOfCombat and not IsMounted() and not inTaxiFlight then
+                SummonRandomCritter()
+            end
+            frame:SetScript("OnUpdate", nil)
+        end
+    end)
+end
+
 local function OnEvent(self, event, ...)
     if event == "PLAYER_REGEN_ENABLED" then
         outOfCombat = true
@@ -19,8 +31,10 @@ local function OnEvent(self, event, ...)
         end
     end
 
-    if event == "PLAYER_ENTERING_WORLD" or event == "COMPANION_LEARNED" then
-        if not IsMounted() and not inTaxiFlight then
+    if event == "PLAYER_ENTERING_WORLD" then
+        StartDelayedSummon(self)
+    elseif event == "COMPANION_LEARNED" then
+        if outOfCombat and not IsMounted() and not inTaxiFlight then
             SummonRandomCritter()
         end
     end
